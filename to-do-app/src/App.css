@@ -32,7 +32,8 @@ main {
 
 .addNewToDo {
   width: 100%;
-  height: 50px;
+  height: 3rem;
+  margin-bottom: 1rem;
 }
 
 .addNewToDo svg {
@@ -40,10 +41,64 @@ main {
 }
 
 .deleteButton, .editButton {
-  width: 40px;
-  height: 40px;
+  width: 3rem;
+  height: 3rem;
 }
 
 .done span {
   text-decoration: line-through;
+}
+
+.toDoElement {
+  width: 100%;
+  display: flex;
+  gap: 1%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.toDoList input[type="checkbox"] {
+  height: 3rem;
+  width: 3rem;
+}
+
+
+.controlButtons {
+  flex-basis: 10%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.taskTitle {
+  width: 100%;
+}
+
+.taskTitle span {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  font-size: 1.6rem;
+}
+
+.tempInput {
+  width: 100%;
+  height: 3rem;
+  padding: .4rem;
+  font-size: 1.6rem;
+}
+
+.mainHeading {
+  font-size: 4rem;
+  margin: 7rem 0;
+}
+
+main h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+main hr {
+  margin-bottom: 1rem;
 }
