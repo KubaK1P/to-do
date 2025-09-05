@@ -3,7 +3,7 @@ function Header() {
         <header className="header">
             <div className="user-header">
                 <h1>User Name</h1> 
-                <div>
+                <div className="user-down-arrow">
                     <svg
                         fill="#000000"
                         height="20px"
