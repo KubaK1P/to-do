@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ToDoItem from "./ToDoItem";
 
 function ToDoList() {
@@ -12,6 +12,18 @@ function ToDoList() {
         setEditingId(newId);
     }
 
+    useEffect(() => {
+        async function fetchTODOS() {
+            const req = await fetch("http://localhost:5000/todos");
+            const res = await req.json()
+            setToDo(res);
+        }
+
+        fetchTODOS();
+        
+        
+    }, []);
+
     const saveTask = (id, taskTitle) => {
         if (taskTitle.trim() === "") {
             setToDo(toDo.filter(task => task.id !== id));
@@ -21,6 +33,16 @@ function ToDoList() {
           task.id === id ? { ...task, taskTitle: taskTitle } : task
         ))
             setEditingId(null);
+            //tutaj
+            async function addReq() {
+                await fetch("http://localhost:5000/todos/add", {
+                    "headers": { "Content-Type": "application/json" },
+                    "body": JSON.stringify({ "id": id, "taskTitle": taskTitle, "done": false }),
+                    "method": "POST"
+                })
+            }
+            addReq();
+            
         }
 
     }
@@ -29,6 +51,14 @@ function ToDoList() {
         setToDo(
             toDo.filter(task => task.id !== id)
         );
+
+        async function delReq() {
+                await fetch("http://localhost:5000/todos/del?id=" + id, {
+                    "headers": { "Content-Type": "application/json" },
+                    "method": "DELETE"
+                })
+            }
+            delReq();
     }
 
     const handleEdit = (id) => {

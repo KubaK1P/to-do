@@ -1,0 +1,20 @@
+GET - pobieranie rzeczy
+POST - dodawanie rzeczy
+PUT - zastępywanie rzeczy
+PATCH - modyfikowanie rzeczy (wysyłasz tylko modyfikacje)
+DELETE - usuwanie rzeczy
+HEAD, OPTIONS - pobieranie informacji o rzeczach (nie będzie nam potrzebne)
+
+100 - Continue (wysyłanie reszty odpowiedzi, metadane, można przesyłać kolejnego requesta)
+(raczej nie będziesz go używał)
+101 - Changing Protocols (websocket, który zrobimy później)
+200 - OK (domyślny kod)
+201 - Created (powinien być zwracany przez odpowiedź na POST)
+301 - Moved Permanently (stały redirect)
+307 - Temporary Redirect
+400 - Client error (jakikolwiek)
+401 - Unauthorized (klient nie podał żadnej autentykacji, nie wiemy kim jest)
+403 - Forbidden (wiemy kim jest i ten ktoś nie ma uprawnień)
+404 - Not Found (wysłał request o coś czego nie ma)
+405 - Invalid method (wysłał POST request kiedy akceptujemy tylko GET)
+500 - Server error (jakikolwiek)
