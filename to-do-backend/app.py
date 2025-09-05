@@ -17,8 +17,14 @@ def todos():
 
 @app.route("/todos/add", methods=["POST"])
 def addTODO():
+    global TODOS
     data = request.get_json()
-    TODOS.append(data)
+
+    if data["id"] in [todo["id"] for todo in TODOS]:
+        TODOS = [({"id": data["id"], "taskTitle": data["taskTitle"], "done": data["done"]} if todo["id"] == data["id"] else todo) for todo in TODOS]
+    else:
+        TODOS.append(data)
+
     return "string"
 
 @app.route("/todos/del", methods=["DELETE"])
@@ -27,3 +33,4 @@ def delTODO():
     id = request.args.get("id", default=1, type=int)
     TODOS = [todo for todo in TODOS if todo["id"] != id]
     return "OK"
+
