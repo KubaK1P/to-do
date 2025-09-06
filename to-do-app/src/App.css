@@ -64,6 +64,7 @@ main {
 }
 
 .addNewToDo {
+    transition: .2s ease-in-out;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -77,6 +78,16 @@ main {
     rgba(232, 255, 229, 1) 0%,
     rgba(0, 0, 0, 0) 100%
   ), #94FFAF; 
+}
+
+.relativeDiv {
+  position: relative;
+}
+
+.addNewToDo:hover {
+  transform: translateY(-10px);
+  transition: .2s ease-in-out;
+  box-shadow: 0 10px 10px black;
 }
 
 .addNewToDo::before {
@@ -104,26 +115,22 @@ main {
   opacity: 1; /* fade in */
 }
 
-.addNewToDo svg {
+.addNewToDo span svg {
   transform-origin: center;
   height: inherit;
   position: relative;
   z-index: 1; 
 }
 
-.addNewToDo:hover svg {
+.spin-once svg {
   animation: anim-rotate 0.7s ease-in-out forwards;
 }
 
 @keyframes anim-rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-.addNewToDo svg {
-  transform-origin: center;
-  height: inherit;
-  position: relative; 
-  z-index: 1;
+.addNewToDo > span > svg {
+  height: 100%;
 }
-
 
 .deleteButton, .editButton {
   width: 3rem;
