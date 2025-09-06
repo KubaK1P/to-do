@@ -23,6 +23,7 @@ body * {
   flex-basis: 20%;
   background: var(--light-main);
   height: 100vh;
+    border-right: rgba(0, 0, 0, 0.336) solid 2px;
 }
 
 .menu h3 {
@@ -57,6 +58,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
 }
 
 .aside * {
@@ -133,15 +135,33 @@ main {
 }
 
 .deleteButton, .editButton {
-  width: 3rem;
-  height: 3rem;
+transition: all 200ms ease-in-out;
+cursor: pointer;
+border: none;
+  box-shadow: 0 0 3rem rgb(202, 202, 202);
+  background-color: white;
+  padding: 1rem 1rem;
+  width: 4rem;
+  height: 4rem;
 }
-
+.deleteButton:hover, .editButton:hover {
+  transition: all 200ms ease-in-out;
+  /* box-shadow: 0 5px 2px black; */
+  transform: translateY(-5px);
+}
+.deleteButton:hover {
+  background-color: #ff8383;
+}
 .done span {
   text-decoration: line-through;
 }
 
 .toDoElement {
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+  /* border-bottom: black solid 3px; */
+  background-color: var(--light-main);
+  padding: 0 2rem;
   height: 5rem;
   width: 100%;
   display: flex;
@@ -151,24 +171,37 @@ main {
   margin-bottom: 1rem;
 }
 
-.toDoList input[type="checkbox"] {
-  height: 3rem;
-  width: 3rem;
+.toDoElement:hover {
+  transition: all 200ms ease-in-out;
+  transform: translateY(-3px);
+  box-shadow: inset #94FFAF 0 0 100px;
 }
 
+.check {
+  height: 3rem;
+  width: 3rem;
+  accent-color: var(--full-accent);
+}
 
 .controlButtons {
-  flex-basis: 10%;
+  flex-basis: 15%;
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+.controlButtons > button {
+  border-radius: 10px;
 }
 
 .taskTitle {
   width: 100%;
+    
 }
 
 .taskTitle span {
+  font-weight: 600;
+  letter-spacing: 0px;
   display: block;
   width: 100%;
   padding: 5px;
@@ -176,10 +209,19 @@ main {
 }
 
 .tempInput {
+  background-color: transparent;
+  box-shadow: inset 0 0 10px var(--full-main);
+  border-radius: 10px;
+  border: none;
   width: 100%;
   height: 3rem;
   padding: .4rem;
+  font-weight: 600;
   font-size: 1.6rem;
+}
+
+.tempInput:focus {
+  border-color: #129900;
 }
 
 .mainHeading {

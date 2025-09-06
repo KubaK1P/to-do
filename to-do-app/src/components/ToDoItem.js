@@ -3,7 +3,8 @@ function ToDoItem({ children, id, onDelete, onEdit, done, onDone}) {
         <li className={`${done ? "done" : ""} toDoElement`} >
             <input type="checkbox"
                 checked={done}
-                onChange={() => onDone(id)}></input>
+                onChange={() => onDone(id)}
+            className="check"></input>
 
             <div className="taskTitle">{children}</div>
             <div class="controlButtons">

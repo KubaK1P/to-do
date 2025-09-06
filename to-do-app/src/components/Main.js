@@ -6,8 +6,8 @@ function Main() {
     return (
         <div className="main">
             <main >
-                <h2 className="mainHeading">Do zrobienia</h2>
-                <h3 className="myTasks">Moje zadania</h3>
+                <h2 className="mainHeading">Fresh Cement</h2>
+                <h3 className="myTasks">My Tasks</h3>
                 <div>
                     <ToDoList></ToDoList>
                 </div>
