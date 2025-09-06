@@ -46,3 +46,5 @@ def toggleDoneTODO():
         for todo in TODOS
         ]
     return {"success": True, "toggledId": id}
+
+# todo: I probably should error proof this someday

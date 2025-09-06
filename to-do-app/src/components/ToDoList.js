@@ -5,13 +5,7 @@ function ToDoList() {
     const [toDo, setToDo] = useState([]);
     const [editingId, setEditingId] = useState(null);
 
-    const handleClickAdd = () => {
-        const newId = Date.now();
-        setToDo(prevToDo => [{ "id": newId, "taskTitle": "", "done": false}, ...prevToDo]);
-        
-        setEditingId(newId);
-    }
-
+    // fetch all task data that exists on the backend
     useEffect(() => {
         async function fetchTODOS() {
             try {
@@ -29,10 +23,17 @@ function ToDoList() {
         }
 
         fetchTODOS();
-        
-        
     }, []);
 
+    // adds a new task in the editing state
+    const handleClickAdd = () => {
+        const newId = Date.now();
+        setToDo(prevToDo => [{ "id": newId, "taskTitle": "", "done": false}, ...prevToDo]);
+        
+        setEditingId(newId);
+    }
+
+    // actually save the task in the ToDO and in python
     const saveTask = async (id, taskTitle) => {
         if (taskTitle.trim() === "") {
             setToDo(toDo.filter(task => task.id !== id));
@@ -60,6 +61,7 @@ function ToDoList() {
         }
     }
 
+    // deletes a task based on id
     const handleDelete = async (id) => {
         setToDo(
             toDo.filter(task => task.id !== id)
@@ -82,10 +84,12 @@ function ToDoList() {
             
     }
 
+    // puts the specified task into editing state
     const handleEdit = (id) => {
         setEditingId(id);
     }
 
+    // toggles the task's "done" value
     const handleDone = async (id) => {
         setToDo(toDo.map(task => task.id === id ? {...task, done: !(task.done)} : task )
         )
