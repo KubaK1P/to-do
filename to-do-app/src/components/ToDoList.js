@@ -14,9 +14,18 @@ function ToDoList() {
 
     useEffect(() => {
         async function fetchTODOS() {
-            const req = await fetch("http://localhost:5000/todos");
-            const res = await req.json()
-            setToDo(res);
+            try {
+                const res = await fetch("http://localhost:5000/todos");
+                const data = await res.json()
+                if (!data.ok) {
+                    console.error("Server error", data.error);
+                }
+                setToDo(data);
+            }
+            catch (err) {
+                console.error("Network error", err);
+            }
+            
         }
 
         fetchTODOS();
@@ -24,7 +33,7 @@ function ToDoList() {
         
     }, []);
 
-    const saveTask = (id, taskTitle) => {
+    const saveTask = async (id, taskTitle) => {
         if (taskTitle.trim() === "") {
             setToDo(toDo.filter(task => task.id !== id));
         } else {
@@ -34,40 +43,67 @@ function ToDoList() {
         ))
             setEditingId(null);
             //tutaj
-            async function addReq() {
-                await fetch("http://localhost:5000/todos/add", {
+            try {
+                const res = await fetch("http://localhost:5000/todos/add", {
                     "headers": { "Content-Type": "application/json" },
-                    "body": JSON.stringify({ "id": id, "taskTitle": taskTitle, "done": false }),
+                    "body": JSON.stringify({ "id": id, "taskTitle": taskTitle, "done": false }), // todo: after editing a "done": true task, it becomes undone on the backend
                     "method": "POST"
-                })
-            }
-            addReq();
-            
-        }
+                });
+                const data = res.json();
 
+                if (!data.ok) {
+                    console.error("Server error", data.error);
+                }
+            } catch (err) {
+                console.error("Network error", err);
+            }  
+        }
     }
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         setToDo(
             toDo.filter(task => task.id !== id)
         );
 
-        async function delReq() {
-                await fetch("http://localhost:5000/todos/del?id=" + id, {
-                    "headers": { "Content-Type": "application/json" },
-                    "method": "DELETE"
-                })
+        try {
+            const res = await fetch(`http://localhost:5000/todos/del?id=${id}`, {
+                "headers": { "Content-Type": "application/json" },
+                "method": "DELETE"
+            })
+            const data = res.json()
+
+            if (!data.ok) {
+                    console.error("Server error", data.error);
             }
-            delReq();
+
+        } catch (err) {
+            console.error("Network error", err);
+        }
+            
     }
 
     const handleEdit = (id) => {
         setEditingId(id);
     }
 
-    const handleDone = (id) => {
+    const handleDone = async (id) => {
         setToDo(toDo.map(task => task.id === id ? {...task, done: !(task.done)} : task )
         )
+
+        try {
+            const res = await fetch(`http://localhost:5000/todos/done?id=${id}`, {
+                "headers": { "Content-Type": "application/json" },
+                "method": "PATCH"
+            });
+            const data = res.json()
+            
+            if (!data.ok) {
+                 console.error("Server error", data.error);
+            }
+
+        } catch (err) {
+            console.error("Network error", err);
+        }
     }
 
     return (

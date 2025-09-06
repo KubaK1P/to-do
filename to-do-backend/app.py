@@ -25,12 +25,24 @@ def addTODO():
     else:
         TODOS.append(data)
 
-    return "string"
+    return {"success": True, "addedTitle": data["taskTitle"], "addedId": data["id"]}
 
 @app.route("/todos/del", methods=["DELETE"])
 def delTODO():
     global TODOS
     id = request.args.get("id", default=1, type=int)
     TODOS = [todo for todo in TODOS if todo["id"] != id]
-    return "OK"
+    return {"success": True, "deletedId": id}
 
+
+@app.route("/todos/done", methods=["PATCH"])
+def toggleDoneTODO():
+    global TODOS
+    id = request.args.get("id", default=1, type=int)
+    # print(id)
+    TODOS = [
+        {**todo, "done": not todo["done"]} 
+        if todo["id"] == id else todo 
+        for todo in TODOS
+        ]
+    return {"success": True, "toggledId": id}
