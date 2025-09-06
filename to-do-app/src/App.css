@@ -3,19 +3,39 @@ body * {
   padding: 0;
   box-sizing: border-box;
   list-style-type: none;
+  font-family: "Epuda Sans", sans-serif;
+  --light-main: hsl(113, 20%, 97%);
+  --full-main: #94FFAF;
+  --light-accent: #e8ffe5;
+  --middle-accent: hsl(113, 100%, 80%);
+  --full-accent: #129900;
+  --light-secondary: #94FFF7;
+  --full-secondary: #94FFD3;
 }
 
 .container {
   display: flex;
-  gap: 3rem ;
 }
 
 .menu {
   padding: 2rem;
   flex-basis: 20%;
+  background: var(--light-main);
+  height: 100vh;
+}
+
+.menu h3 {
+  color: black;
+  border-bottom: black solid 3px;
+  /* text-shadow: 3px 3px var(--middle-accent), 6px 6px var(--light-secondary); */
+  /* box-shadow: inset var(--light-accent) 0 0 50px; */
+  background-image: linear-gradient(0deg,rgba(232, 255, 229, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  padding: 1rem 1rem;
+
 }
 
 .main {
+  padding: 3rem;
   flex-grow: 2;
 }
 
@@ -25,6 +45,7 @@ main {
 
 .user-header {
   display: flex;
+  padding: 1rem;
 }
 
 .aside {
@@ -134,7 +155,39 @@ main hr {
 }
 
 .aside h3 {
-  padding-left: 10%;
-  font-size: 2rem;
+  position: relative;
+  padding-left: 1rem;
+  font-size: 2.1rem;
   margin-bottom: 1rem;
+    letter-spacing:4px;
+}
+
+
+.navButton, .user-header {
+  transition: 200ms ease-in-out;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  background-color: var(--light-main);
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.navButton:hover, .user-header:hover {
+  transition: 200ms ease-in-out;
+  background-color: var(--light-accent);
+  color: var(--full-accent);
+  cursor: pointer;
+   box-shadow: 0 0 5px var(--full-main) ;
+}
+
+.navButton:hover svg {
+  transition: 200ms ease-in-out;
+    fill: var(--middle-accent);
+    stroke: var(--full-accent);
+}
+
+.user-header:hover svg {
+    transition: 200ms ease-in-out;
+      fill: var(--full-accent);
 }

@@ -7,7 +7,7 @@ function Menu() {
       <Header />
       <aside className="aside">
         <div>
-          <h3>General</h3>
+            <h3>General</h3>
           <ul className="filterList">
             <li>
               <NavButton text="Inbox">

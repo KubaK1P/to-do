@@ -2,7 +2,8 @@ function Header() {
     return (
         <header className="header">
             <div className="user-header">
-                <h1>User Name</h1> 
+                
+                <h1>Jakub Kuś</h1> 
                 <div className="user-down-arrow">
                     <svg
                         fill="#000000"

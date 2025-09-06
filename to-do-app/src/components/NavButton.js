@@ -1,6 +1,6 @@
 function NavButton({children, text}) {
     return (
-        <button>
+        <button className="navButton">
         {children}
         {text}
         </button>
