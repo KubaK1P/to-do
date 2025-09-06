@@ -1,30 +1,25 @@
-import { useState } from "react"; // put your CSS here
+import { useState } from "react";
 
 export default function AddNewToDoButton({ children, handleClick }) {
   const [mask, setMask] = useState("");
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left; 
-    const y = e.clientY - rect.top;  
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-
-    setMask(`radial-gradient(circle 600px at ${x}px ${y}px, rgba(0,0,0,1), rgba(0,0,0,0))`);
+    // radial gradient mask centered on mouse
+    setMask(
+      `radial-gradient(circle 700px at ${x}px ${y}px, rgba(0,0,0,1), rgba(0,0,0,0))`
+    );
   };
 
   return (
     <button
       className="addNewToDo"
       onMouseMove={handleMouseMove}
-      style={{
-        WebkitMaskImage: mask,
-        WebkitMaskRepeat: "no-repeat",
-        WebkitMaskSize: "100% 100%",
-        maskImage: mask, 
-        maskRepeat: "no-repeat",
-        maskSize: "100% 100%",
-          }}
-        onClick={handleClick}  
+          style={{ "--mask": mask }}
+          onClick={handleClick}
     >
       {children}
     </button>
