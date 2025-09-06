@@ -34,13 +34,18 @@ body * {
 
 }
 
+.myTasks {
+  padding: ;
+  border-bottom: black solid 3px;
+}
+
 .main {
   padding: 3rem;
   flex-grow: 2;
 }
 
 main {
-  width:50%;
+  width:70%;
 }
 
 .user-header {
@@ -118,16 +123,20 @@ main {
 }
 
 .mainHeading {
-  font-size: 4rem;
-  margin: 5rem 0;
+  text-decoration: underline;
+  text-decoration-thickness: 0.55rem;
+  text-underline-offset: 2rem;
+  font-weight: 100;
+  font-size: 6rem;
+  margin: 4rem 0;
+  letter-spacing: 16px;
+  text-transform:capitalize;
+  text-shadow: 5px 5px hsl(113, 80%, 85%), 10px 10px #E8FFE5;
 }
 
 main h3 {
+  padding: 1rem 0;
   font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-main hr {
   margin-bottom: 1rem;
 }
 
@@ -154,7 +163,7 @@ main hr {
   height: 3rem;
 }
 
-.aside h3 {
+.aside h3, .myTasks {
   position: relative;
   padding-left: 1rem;
   font-size: 2.1rem;
