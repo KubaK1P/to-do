@@ -5,85 +5,43 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
 public class RysowanieAWT extends Frame {
-    public RysowanieAWT() throws HeadlessException {
-        setSize(1200,800);
+
+    public RysowanieAWT() {
+        setSize(1200, 800);
         setVisible(true);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
                 System.exit(0);
             }
         });
     }
-/*podstawowa klasa płutna Graphics
-    @Override
-    public void paint(Graphics g) {
-        //super.paint(g);
-        g.setColor(Color.RED);
-        g.drawLine(50,50,200,50);
-        g.setColor(Color.magenta);
-        g.fillOval(0,0,200,400);
-
-    }
-*/
-
-    /* wersja rozszerzona klasy graphics
-    */
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
 
-//        Graphics2D g2 = (Graphics2D) g;
-//        Rectangle2D kwadrat = new Rectangle2D.Double(450,250,300,300);
-//        g2.setColor(Color.GRAY);
-//        g2.draw(kwadrat);  // kwadrat bez zmiany / transformacji
-//
-//        AffineTransform orginalna = g2.getTransform();
-//        g2.scale(0.9, 0.9);
-//        g2.rotate(Math.toRadians(13), 600, 400);
-//
-////        double width = getWidth();
-////        double height = getHeight();
-////        double zoomWidth = width * 0.9;
-////        double zoomHeight = height * 0.9;
-////        double anchorx = (width - zoomWidth) / 2;
-////        double anchory = (height - zoomHeight) / 2;
-////        g2.translate(anchorx, anchory);
-//        g2.draw(kwadrat);
-//
-//        g2.setTransform(orginalna);
         Graphics2D g2 = (Graphics2D) g;
-        Rectangle2D kwadrat = new Rectangle2D.Double(450,250,300,300);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                            RenderingHints.VALUE_ANTIALIAS_ON);
+
+        Rectangle2D square = new Rectangle2D.Double(450, 250, 300, 300);
+
+        AffineTransform original = g2.getTransform();
+
         for (int i = 0; i < 60; i++) {
-
-
-
             g2.setColor(Color.GRAY);
-            g2.draw(kwadrat);  // kwadrat bez zmiany / transformacji
+            g2.draw(square);
 
-            AffineTransform orginalna = g2.getTransform();
-            g2.scale(0.9, 0.9);
-            g2.rotate(Math.toRadians(13), 600, 400);
-            g2.draw(kwadrat);
-            g2.setTransform(orginalna);
+            // transform for the NEXT square
+            g2.rotate(Math.toRadians(10), 600, 400);
+            g2.scale(0.92, 0.92);
         }
 
-      //  k.rysuj(g2);
-        /*Polygon ksztalt = new Polygon();
-        ksztalt.addPoint(100,100);
-        ksztalt.addPoint(130,150);
-        ksztalt.addPoint(120,70);
-        ksztalt.addPoint(70,370);
-
-        g2.setColor(Color.BLUE);
-        g2.fillPolygon(ksztalt);
-*/
-
+        g2.setTransform(original);
     }
 
-    static void main() {
+    public static void main(String[] args) {
         new RysowanieAWT();
     }
 }
